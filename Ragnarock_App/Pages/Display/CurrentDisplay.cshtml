@@ -18,53 +18,7 @@
 
 </body>
 </html>
-<style>
-    th {
-        border-bottom: 1px solid #ddd;
-        vertical-align: top
-    }
 
-    td {
-    }
-
-    a {
-        display: inline-block;
-        padding: 8px 16px;
-    }
-
-        a:hover {
-            background-color: white;
-            color: black;
-        }
-
-    .previous {
-        background-color: red;
-        color: black;
-        font-size: x-large;
-        border-radius: 5px;
-    }
-
-    .back {
-        background-color: black;
-        color: white;
-        border-radius: 5px;
-        text-align: left;
-        block-size: fit-content;
-    }
-
-    div {
-        text-align: left;
-        padding: 5px 5px 5px 5px;
-        inline-size: 0px;
-    }
-
-    .next {
-        background-color: green;
-        color: black;
-        font-size: x-large;
-        border-radius: 5px;
-    }
-</style>
 
 <head>
     <title>@Model.display.Name</title>
@@ -93,6 +47,19 @@
     <tr>
         <th style="height:100px;vertical-align:middle;text-align:center">
             <audio controls src="~/SoundFiles/@Model.display.SoundFile">test</audio>
+        </th>
+        <th>
+            Rating: @Model.display.Rating
+            <br />
+            <form method="post">
+                <div class="form-group">
+                    <input asp-for="@Model.display.Rating" class="form-control" />
+                    <span asp-validation-for="@Model.display.Rating" class="text-danger" aria-label="Default" aria-describedby="inputGroup-sizing-default"></span>
+                </div>
+                <div class="form-group">
+                    <input type="submit" value="Submit" class="btn btn-primary" />
+                </div>
+            </form>
         </th>
     </tr>
 </table>

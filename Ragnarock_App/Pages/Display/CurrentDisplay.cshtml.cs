@@ -39,8 +39,8 @@ namespace Ragnarock_App
             {
                 return Page();
             }
-            catalog.UpdateDisplay(display);
-            return RedirectToPage("GetAllDisplays");
+            catalog.UpdateDisplayRating(display);
+            return RedirectToPage("DisplayWithoutEdit");
 
         }
     }

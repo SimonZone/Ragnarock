@@ -41,7 +41,7 @@ namespace Ragnarock_App.Services
         public Display GetDisplay(int id)
         {
                 Dictionary<int, Display> displays = AllDisplays();
-                Display foundDisplay = displays[1];
+                Display foundDisplay = displays[0];
             try
             {
                 foundDisplay = displays[id];
@@ -63,6 +63,7 @@ namespace Ragnarock_App.Services
             foundDisplay.DisplayText = display.DisplayText;
             foundDisplay.ImageFile = display.ImageFile;
             foundDisplay.SoundFile = display.SoundFile;
+            foundDisplay.Rating = display.Rating;
             JsonWriter.WriteToJson(Displays, JsonFileName);
         }
 
@@ -71,6 +72,15 @@ namespace Ragnarock_App.Services
             Dictionary<int, Display> displays = AllDisplays();
             displays.Remove(id);
             JsonWriter.WriteToJson(displays, JsonFileName);
+        }
+
+        public void UpdateDisplayRating(Display display)
+        {
+            Dictionary<int, Display> Displays = AllDisplays();
+            Display foundDisplay = Displays[display.Id];
+            foundDisplay.Rating = (display.Rating + foundDisplay.Rating) / 2;
+            foundDisplay.Rating = Math.Round(foundDisplay.Rating, 1, MidpointRounding.AwayFromZero);
+            JsonWriter.WriteToJson(Displays, JsonFileName);
         }
     }
 }
